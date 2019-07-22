@@ -3,101 +3,456 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>project</title>
+    <title>Task Tracker</title>
     <!-- <link rel='stylesheet' href='main.css'> -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js"
+        type="text/javascript"></script>
+    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css"
+        type="text/css" rel="stylesheet" />
+    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css"
+        type="text/css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../dist/bundle.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
-        <header>
-            <a href="/">
-                <img id="logo_img" src="images/logo.png" alt="rabble_logo">
-            </a>
-            <form name="search" action="#" method="get">
-                <input type="text" name="search" placeholder="search"><button type="submit">GO</button>
-            </form>
+    <nav id="menu" role="navigation">
+        <div class="brand"><img src="images/logo.png">ToDo</div>
+        <ul>
+            <li>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 24 24"
+                        style=" fill:#236B8E;">
+                        <path
+                            style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"
+                            d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z"
+                            font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"></path>
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 16 16"
+                        style=" fill:#236B8E;">
+                        <g id="surface1">
+                            <path style=" "
+                                d="M 6.570313 1 L 6.328125 2.289063 C 5.398438 2.5625 4.570313 3.046875 3.890625 3.695313 L 2.652344 3.261719 L 1.222656 5.738281 L 2.210938 6.585938 C 2.097656 7.042969 2 7.507813 2 8 C 2 8.492188 2.097656 8.957031 2.210938 9.414063 L 1.222656 10.261719 L 2.652344 12.738281 L 3.886719 12.300781 C 4.570313 12.957031 5.398438 13.4375 6.328125 13.714844 L 6.570313 15 L 9.429688 15 L 9.671875 13.714844 C 10.601563 13.4375 11.429688 12.953125 12.109375 12.300781 L 13.34375 12.738281 L 14.777344 10.261719 L 13.785156 9.414063 C 13.898438 8.957031 14 8.492188 14 8 C 14 7.507813 13.902344 7.042969 13.789063 6.585938 L 14.777344 5.738281 L 13.347656 3.261719 L 12.113281 3.695313 C 11.429688 3.042969 10.601563 2.5625 9.671875 2.289063 L 9.429688 1 Z M 7.398438 2 L 8.601563 2 L 8.796875 3.054688 L 9.117188 3.132813 C 10.109375 3.359375 10.984375 3.878906 11.65625 4.597656 L 11.878906 4.835938 L 12.894531 4.480469 L 13.496094 5.519531 L 12.683594 6.21875 L 12.78125 6.53125 C 12.921875 6.992188 13 7.488281 13 8 C 13 8.511719 12.921875 9.003906 12.78125 9.46875 L 12.683594 9.78125 L 13.496094 10.480469 L 12.894531 11.519531 L 11.878906 11.160156 L 11.65625 11.402344 C 10.984375 12.121094 10.109375 12.640625 9.117188 12.871094 L 8.796875 12.941406 L 8.601563 14 L 7.398438 14 L 7.203125 12.941406 L 6.882813 12.871094 C 5.890625 12.640625 5.015625 12.121094 4.34375 11.402344 L 4.117188 11.160156 L 3.101563 11.519531 L 2.503906 10.480469 L 3.316406 9.78125 L 3.21875 9.46875 C 3.078125 9.007813 3 8.511719 3 8 C 3 7.488281 3.078125 6.992188 3.21875 6.53125 L 3.316406 6.21875 L 2.503906 5.519531 L 3.101563 4.480469 L 4.121094 4.835938 L 4.34375 4.597656 C 5.015625 3.878906 5.890625 3.359375 6.882813 3.132813 L 7.203125 3.054688 Z M 8 5 C 6.347656 5 5 6.347656 5 8 C 5 9.652344 6.347656 11 8 11 C 9.652344 11 11 9.652344 11 8 C 11 6.347656 9.652344 5 8 5 Z M 8 6 C 9.109375 6 10 6.890625 10 8 C 10 9.109375 9.109375 10 8 10 C 6.890625 10 6 9.109375 6 8 C 6 6.890625 6.890625 6 8 6 Z ">
+                            </path>
+                        </g>
+                    </svg>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-            <nav>
-                <ul class="menu top-menu">
-                    <li>
-                        <input id="nav_button_0" type="radio" name="nav_button" value="0" checked>
-                        <label for="nav_button_0">HOME</label>
-                    </li><li>
-                        <input id="nav_button_1" type="radio" name="nav_button" value="game">
-                        <label for="nav_button_1">GAMES</label>
-                    </li><li>
-                        <input id="nav_button_2" type="radio" name="nav_button" value="book">
-                        <label for="nav_button_2">BOOKS</label>
-                    </li><li>
-                        <input id="nav_button_3" type="radio" name="nav_button" value="music">
-                        <label for="nav_button_3">MUSIC</label>
-                    </li><li>
-                        <input id="nav_button_4" type="radio" name="nav_button" value="video">
-                        <label for="nav_button_4">VIDEO</label>
-                    </li><li>
-                        <input id="nav_button_5" type="radio" name="nav_button" value="project">
-                        <label for="nav_button_5">PROJECTS</label>
-                    </li>
-                </ul>
-            </nav>
+    <div class="page-wrap">
+        <div id="header">
+            <!--menu toggle button-->
+            <button type="button" id="hamburger" class="is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <button type="button" id="btn_add" title="add new task"><img src="images/svg/add.svg"><span> Add
+                    ToDo</span></button>
+        </div>
 
-            <div id="heading">
-                <h1>HOME</h1>
-                <button class="hidden" id="button_add"></button>
-                <label title="Add something" for="button_add">+</label>
-                <label class="sort" for="sort_by">Sort by</label>
-                <select class="sort" id="sort_by">
-                    <option value="date">date</option>
-                    <option value="title">title</option>
-                    <option value="creator">creator</option>
-                </select>
-                <input class="sort" id="sort_direction_0" type="radio" name="sort_direction" value="0" checked><label class="sort" for="sort_direction_0"><i class="fas fa-long-arrow-alt-up"></i>
-                </label><input class="sort" id="sort_direction_1" type="radio" name="sort_direction" value="1"><label class="sort" for="sort_direction_1"><i class="fas fa-long-arrow-alt-down"></i></label>
-                <label class="sort" for="sort_by_creator">Creator</label>
-                <select class="sort" id="sort_by_creator">
-                    <option value="0">---</option>
-                </select>
+        <div class="content">
+
+            <!--choose view format-->
+            <input type="radio" id="content_view_btn1" name="content_view_btn" />
+            <label for="content_view_btn1"><img src="images/svg/block-button.svg" /></label>
+            <input type="radio" id="content_view_btn2" name="content_view_btn" />
+            <label for="content_view_btn2"><img src="images/svg/list-button.svg" /></label>
+
+            <h3>To Do<span></span></h3>
+
+            <div id="task_to_do" class="group_task">
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="date"><img src="images/svg/clock.svg" />5 Feb 2003 18:30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle" style="background-color: mediumvioletred">C</div>
+                        <h5 class="card-title">Card Title1</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Done</a>
+                        <a class="dropdown-item submenu dropleft dropdown-toggle" data-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">Change priority</a>
+                        <div class="dropdown-menu dropdown-menu-lg-left">
+                            <a class="dropdown-item" href="#">Hight</a>
+                            <a class="dropdown-item" href="#">Normal</a>
+                            <a class="dropdown-item" href="#">Low</a>
+                        </div>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority low-priority"><img src="images/svg/arrow.svg" />Low priority</span>
+                        <span class="date"><img src="images/svg/clock.svg" />5 Feb 2003 18:30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title2</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Done</a>
+                        <a class="dropdown-item submenu dropleft dropdown-toggle" data-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">Change priority</a>
+                        <div class="dropdown-menu dropdown-menu-lg-left">
+                            <a class="dropdown-item" href="#">Hight</a>
+                            <a class="dropdown-item" href="#">Normal</a>
+                            <a class="dropdown-item" href="#">Low</a>
+                        </div>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority high-priority"><img src="images/svg/arrow.svg" />High priority</span>
+                        <span class="date"><img src="images/svg/clock.svg" />5 Feb 2003 18:30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title3</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Done</a>
+                        <a class="dropdown-item submenu dropleft dropdown-toggle" data-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">Change priority</a>
+                        <div class="dropdown-menu dropdown-menu-lg-left">
+                            <a class="dropdown-item" href="#">Hight</a>
+                            <a class="dropdown-item" href="#">Normal</a>
+                            <a class="dropdown-item" href="#">Low</a>
+                        </div>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="date"><img src="images/svg/clock.svg" />5 Feb 2003 18:30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title4</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Done</a>
+                        <a class="dropdown-item submenu dropleft dropdown-toggle" data-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">Change priority</a>
+                        <div class="dropdown-menu dropdown-menu-lg-left">
+                            <a class="dropdown-item" href="#">Hight</a>
+                            <a class="dropdown-item" href="#">Normal</a>
+                            <a class="dropdown-item" href="#">Low</a>
+                        </div>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="date"><img src="images/svg/clock.svg" />5 Feb 2003 18:30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title5</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Done</a>
+                        <a class="dropdown-item submenu dropleft dropdown-toggle" data-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">Change priority</a>
+                        <div class="dropdown-menu dropdown-menu-lg-left">
+                            <a class="dropdown-item" href="#">Hight</a>
+                            <a class="dropdown-item" href="#">Normal</a>
+                            <a class="dropdown-item" href="#">Low</a>
+                        </div>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
             </div>
-        </header>
 
-        <aside></aside>
+            <h3>Completed<span></span></h3>
 
+            <div id="task_completed" class="group_task">
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="stage completed"><img src="images/svg/check-mark.svg" />Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title1</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
 
-        <section>
-            <div class="content">
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="stage completed"><img src="images/svg/check-mark.svg" />Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title2</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="stage completed"><img src="images/svg/check-mark.svg" />Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title3</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="priority"></span>
+                        <span class="stage completed"><img src="images/svg/check-mark.svg" />Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title4</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="task_info card-header text-right">
+                        <span class="stage completed"><img src="images/svg/check-mark.svg" />Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="circle">C</div>
+                        <h5 class="card-title">Card Title5</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                            dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                            Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
+                            felis eu
+                            pede mollis pretium. Integer tincidunt.
+                        </p>
+                    </div>
+
+                    <!--manage the task-->
+                    <div id="dLabel1" class="card-button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="btn-top"></span>
+                        <span class="btn-middle"></span>
+                        <span class="btn-bottom"></span>
+                    </div>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropleft"
+                        aria-labelledby="dLabel1">
+                        <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                </div>
             </div>
-        </section>
-        <footer>blah blah</footer>
+        </div>
+
     </div>
-
-    <div id="add_content">
-        <form id="add_content_form">
-            <label for="new_content_type">Type of the content</label>
-            <select id="new_content_type">
-                <option value="game">game</option>
-                <option value="book">book</option>
-                <option value="music">music</option>
-                <option value="video">video</option>
-                <option value="project">project</option>
-            </select>
-            <label for="new_content_title">Title</label>
-            <input id="new_content_title" type="text" required>
-            <label for="new_content_image">Image</label>
-            <input id="new_content_image" type="url">
-            <label for="new_content_creator">Creator or artist</label>
-            <input id="new_content_creator" type="text">
-            <label for="new_content_description">Description</label>
-            <textarea id="new_content_description"></textarea>
-            <label for="new_content_link">Download link</label>
-            <input id="new_content_link" type="url" required>
-            <input type="submit">
-        </form>
-    </div>
-
-
+    <!--
+    <div id="messageBox" class="jumbotron"></div>
+    <div id="okta-login-container"></div>
+    -->
 </body>
 
 </html>

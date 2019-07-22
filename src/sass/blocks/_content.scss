@@ -1,81 +1,160 @@
-section {
+.content {
+  margin-top: 110px;
+  padding: 15px 40px 0 30px;
+  h3 {
+    line-height: 70px;
+    span {
+      margin-left: 10px;
+      color: gray;
+    }
+  }
+}
+
+.card-columns .card-body {
+  padding-bottom: 30px;
+  .task_info {
+    position: relative;
+  }
+  .card-title {
+    margin-top: 30px;
+  }
+  p {
+    margin-left: 0;
+  }
+}
+
+input[name="content_view_btn"] {
+  display: none;
+}
+
+#content_view_btn1 + label,
+#content_view_btn2 + label {
+  position: absolute;
+  height: 20px;
+  width: 30px;
+  top: 140px;
+  right: 70px;
+  background-size: contain;
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+#content_view_btn2 + label {
+  right: 30px;
+}
+
+.card {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.card-body {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  p {
+    margin-left: 70px;
+    margin-right: 30px;
+    margin-bottom: 0;
+  }
+  .circle {
+    float: left;
+    display: table-cell;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+    background-color: steelblue;
     text-align: center;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 47px;
+    color: #fff;
   }
-  
-  section figure {
-      display: inline-block;
-      margin: 0;
-      font-family: 'Oswald', sans-serif;
-      //font-weight: 300;
-      height: 200px;
-      width: 200px;
-      padding: 17px;
+}
+
+.dropdown {
+  //position: relative;
+}
+
+.dropdown-menu .dropdown-menu {
+  top: auto;
+  left: -90%;
+  transform: translateY(-2rem);
+}
+.dropdown-item + .dropdown-menu {
+  display: block;
+  opacity: 0;
+  transition: opacity .3s 1s;
+}
+.dropdown-item:hover + .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  transition: opacity .3s .1s;
+}
+
+.card-button {
+  z-index: 98;
+  position: absolute;
+  top: 48px;
+  right: 30px;
+  cursor: pointer;
+  span {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: gray;
+    border-radius: 50%;
   }
-  
-  figure img {
-      display: block;
-      border: 1px solid #fff;
-      outline: 1px solid #c9c9c9;
-      margin: auto;
-      width: 128px;
-      height: 128px;
-      object-fit: cover;
+  .btn-top {
+    top: -15px;
   }
-  
-  figure figcaption {
-      font-size: 14px;
-      //font-weight: 300;
-      margin-top: 5px;
-      overflow: hidden;
+  .btn-bottom {
+    top: 15px;
   }
-  
-  figure figcaption span {
-      display: block;
-      font-size: 14px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      &:last-child {
-            margin-top: 5px;
-            color: #29c5e6;
-            font-size: 12px;
-      }
+}
+
+.task_info {
+  position: absolute;
+  font-size: 14px;
+  top: -5px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  .completed {
+    color: green;
   }
-  
-  figure div {
-      font-size: 14px;
-      color: #29c5e6;
-  }
-  
-  .content {
-      padding: 20px 10px;
-  }
-  
-  .content figure {
+  span {
+    margin-left: 20px;
+    img {
       position: relative;
-      &:hover {
-          img {
-              border-color: #c9c9c9;
-          }
-          box-shadow: 0px 1px 1px #8f8f8f;
-          label[title="delete"], label[title="edit"] {
-              display: block;
-          }
-      }
+      top: -2px;
+      margin-right: 5px;
+    }
   }
-  
-  // кнопка удаления контента
-  .content_element label[title="delete"], label[title="edit"] {
-      position: absolute;
-      right: 10px;
-      font-size: 15px;
-      cursor: pointer;
-      &:hover {
-          display: block;
-      }
+  .date {
+    color: #bbb;
   }
-  label[title="delete"] {
-      top: 10px;
+  .high-priority img {
+    transform: rotate(90deg);
   }
-  label[title="edit"] {
-      top: 30px;
+  .low-priority img {
+    transform: rotate(-90deg);
   }
+}
+
+.card-columns {
+  @media (min-width: 1500px) {
+    column-count: 4;
+  }
+  @media (max-width: 1500px) {
+    column-count: 3;
+  }
+  @media (max-width: 1200px) {
+    column-count: 2;
+  }
+  @media (max-width: 800px) {
+    column-count: 1;
+  }
+}

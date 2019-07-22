@@ -1,8 +1,115 @@
 import '../sass/main.scss';
-import { ContentManager, Content } from './models';
+import './menu';
+import './content';
 //import app from './main';
 // app();
 jQuery(document).ready(function () {
+
+  // menu
+  var header = $("#header");
+
+  $(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			header.addClass("header_small");
+		} else {
+			header.removeClass("header_small");
+		}
+  });
+  
+  // toggle task view
+  $("input[name='content_view_btn']").on('click', (e) => {
+    if (e.target.id == 'content_view_btn1' && !$('.group_task').hasClass('card-columns')) {
+      $('.group_task').addClass('card-columns')
+    } else if (e.target.id == 'content_view_btn2' && $('.group_task').hasClass('card-columns')) {
+      $('.group_task').removeClass('card-columns');
+    }
+  })
+
+  // counting cards
+  $(".content h3").each((e) => {
+    $(".content h3")[e].children[0].innerText = `(${$(".content h3").siblings('.group_task')[e].children.length})`;
+    //$(".content h3")[e]
+  })
+
+  // authentication/registration
+  var config = {
+    // Enable or disable widget functionality with the following options. Some of these features require additional configuration in your Okta admin settings. Detailed information can be found here: https://github.com/okta/okta-signin-widget#okta-sign-in-widget
+    // Look and feel changes:
+    logo: 'images/logo.png', // Try changing "okta.com" to other domains, like: "workday.com", "splunk.com", or "delmonte.com"
+    language: 'en',                       // Try: [fr, de, es, ja, zh-CN] Full list: https://github.com/okta/okta-signin-widget#language-and-text
+    i18n: {
+      //Overrides default text when using English. Override other languages by adding additional sections.
+      'en': {
+        'primaryauth.title': 'Sign In',   // Changes the sign in text
+        'primaryauth.submit': 'Sign In',  // Changes the sign in button
+      }
+    },
+    // Changes to widget functionality
+    features: {
+      registration: true,                 // Enable self-service registration flow
+      rememberMe: true,                   // Setting to false will remove the checkbox to save username
+      router: true,                       // Leave this set to true for the API demo
+    },
+    baseUrl: "https://dev-575577.okta.com",
+    clientId: "0oau8wv7qDR3e6jff356",
+    authParams: {
+      issuer: "https://dev-575577.okta.com/oauth2/default",
+      responseType: ['token', 'id_token'],
+      display: 'page'
+    }
+  };
+
+  var oktaSignIn = new OktaSignIn(config);
+
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    oktaSignIn.token.parseTokensFromUrl(
+      // If we get here, the user just logged in.
+      function success(res) {
+        var accessToken = res[0];
+        var idToken = res[1]
+
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
+
+        window.location.hash = '';
+        console.dir(res);
+        console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
+      },
+      function error(err) {
+        console.error(err);
+      }
+    );
+  } else {
+    oktaSignIn.session.get(function (res) {
+      // If we get here, the user is already signed in.
+      if (res.status === 'ACTIVE') {
+        console.dir(res);
+        console.log("Hello, " + res.login + "! You are *still* logged in! :)");
+        return;
+      }
+      oktaSignIn.renderEl(
+        { el: '#okta-login-container' },
+        function success(res) { },
+        function error(err) {
+          console.error(err);
+        }
+      );
+    });
+  }
+
+  function logout() {
+    oktaSignIn.signOut('/');
+    // redirect to login page
+    self.location = '/';
+    oktaSignIn = new OktaSignIn(config);
+  }
+
+  // logout by ESC, later will change
+  document.addEventListener('keyup', e => {
+    if (e.keyCode == 27) logout();
+  })
+
+/*
   let manager = new ContentManager();
 
   // Массив из/в localstorage
@@ -46,7 +153,7 @@ jQuery(document).ready(function () {
     $("#add_content_form")[0].reset();
     addContentOnPage();
     closeAddContentWindow();
-    /*
+
     $.ajax({
       type: "post",
       url: "/content/content.json",
@@ -61,9 +168,9 @@ jQuery(document).ready(function () {
         console.log(textStatus, errorThrown);
       }
     });
-    */
+
   }
-  
+
   // удаление контента
   $(document).on('click', "label[title='delete']",e => {
     deleteContentById(e.target.parentElement.parentElement.id)
@@ -219,4 +326,7 @@ jQuery(document).ready(function () {
       closeAddContentWindow();
     }
   }));
+
+*/
+
 });
